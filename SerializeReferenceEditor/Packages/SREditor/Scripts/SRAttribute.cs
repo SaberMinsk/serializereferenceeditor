@@ -17,7 +17,7 @@ namespace SerializeReferenceEditor
 			public string Path;
 		}
 
-		public TypeInfo[] Types { get; private set; }
+		public TypeInfo[] Types { get; protected set; }
 
 		public SRAttribute()
 		{
@@ -102,7 +102,7 @@ namespace SerializeReferenceEditor
 				       : childType.IsSubclassOf(baseType));
 		}
 
-		private static Type[] GetChildTypes(Type baseType)
+		protected static Type[] GetChildTypes(Type baseType)
 		{
 			if (_typeCache.TryGetValue(baseType, out var result))
 				return result;
@@ -130,9 +130,8 @@ namespace SerializeReferenceEditor
 			return Type.GetType(typeClass + ", " + typeAssembly);
 		}
 
-		public virtual void OnCreate(object instance)
+		public virtual void OnCreate(object instance, UnityEngine.Object target)
 		{
-
 		}
 	}
 }

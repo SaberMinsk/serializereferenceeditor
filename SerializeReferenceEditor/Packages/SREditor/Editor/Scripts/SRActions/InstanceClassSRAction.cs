@@ -29,7 +29,7 @@ namespace SerializeReferenceEditor.Editor.SRActions
             Undo.FlushUndoRecordObjects();
 
             var instance = Activator.CreateInstance(typeInfo.Type);
-            _srAttribute.OnCreate(instance);
+            _srAttribute.OnCreate(instance, Property.serializedObject.targetObject);
 
             Property.managedReferenceValue = instance;
             Property.serializedObject.ApplyModifiedProperties();
